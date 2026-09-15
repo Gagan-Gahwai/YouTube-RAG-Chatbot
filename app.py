@@ -57,7 +57,7 @@ with st.sidebar:
                     st.session_state.rag_chain = rag_chain
                     st.session_state.video_url = url
                     st.session_state.messages = []
-                    # st.session_state.rag_chain = rag_chain
+                    st.session_state.rag_chain = rag_chain
                     st.session_state.retriever = retriever
 
                     summary_response = summary_chain.invoke({
