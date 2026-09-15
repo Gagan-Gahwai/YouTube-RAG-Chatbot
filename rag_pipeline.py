@@ -6,17 +6,22 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 
-from langchain_huggingface import HuggingFaceEndpointEmbeddings
+from langchain_huggingface import HuggingFaceEndpointEmbeddings, ChatHuggingFace, HuggingFaceEndpoint
 from langchain_community.vectorstores import FAISS
 from langchain_groq import ChatGroq
 from dotenv import load_dotenv
 
 load_dotenv()
 
-llm = ChatGroq(
-    model="openai/gpt-oss-120b",
-    temperature=0
-)
+# llm = ChatGroq(
+#     model="openai/gpt-oss-120b",
+#     temperature=0
+# )
+
+model = HuggingFaceEndpoint(repo_id="deepseek-ai/DeepSeek-V4.1-Flash", temperature= 1)
+
+llm = ChatHuggingFace(llm = model)
+
 
 embeddings = HuggingFaceEndpointEmbeddings(
     model="sentence-transformers/all-MiniLM-L6-v2"
